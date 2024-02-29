@@ -8,7 +8,9 @@ public class ToDoList implements IToDoList {
     }
 
     @Override
-    public void addTask(Task,task){
+    public void addTask(Task task){
+        tasks.add(task);
+        history.push(tasks);
         
     }
 }
