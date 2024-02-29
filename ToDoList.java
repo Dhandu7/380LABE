@@ -16,7 +16,7 @@ public class ToDoList implements IToDoList {
     @Override
     public void addTask(Task task) {
         tasks.add(task);
-        history.push(tasks);
+        history.push(new ArrayList<>(tasks));
 
     }
 
@@ -28,8 +28,7 @@ public class ToDoList implements IToDoList {
 
     @Override
     public void deleteTask(String taskId) {
-        // Remove task from tasks list
-        // Push the current state of tasks list onto history stack
+
     }
 
     @Override
