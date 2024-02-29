@@ -8,8 +8,6 @@ public class Task {
     private String title;
     private boolean isCompleted;
 
-
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -19,8 +17,6 @@ public class Task {
                Objects.equals(title, task.title) &&
                isCompleted == task.isCompleted; 
     }
-
-
 
     @Override
     public int hashCode() {

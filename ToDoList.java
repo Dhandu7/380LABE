@@ -1,82 +1,52 @@
-package edu.ucalgary.oop;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import edu.ucalgary.oop.Task;
+
 public class ToDoList implements IToDoList {
     private List<Task> tasks;
-    private Stack<List<Task>> history;
+    private Stack<List<Tasks>> history;
 
     public ToDoList() {
-        tasks = new ArrayList<>();
-        history = new Stack<>();
+        this.tasks = new ArrayList<>();
+        this.history = new Stack<>();
     }
 
     @Override
     public void addTask(Task task) {
-        // Before adding the task, save the current state
-        saveState();
         tasks.add(task);
+        history.push(tasks);
+
     }
 
     @Override
     public void completeTask(String taskId) {
-        // Find the task by ID and mark it as completed
-        // Then save the current state
-        saveState();
-        for (Task task : tasks) {
-            if (task.getId().equals(taskId)) {
-                task.setCompleted(true);
-                break;
-            }
-        }
+        // Find task by taskId and mark it as completed
+        // Push the current state of tasks list onto history stack
     }
 
     @Override
     public void deleteTask(String taskId) {
-        // Find the task by ID and remove it
-        // Then save the current state
-        saveState();
-        tasks.removeIf(task -> task.getId().equals(taskId));
+        // Remove task from tasks list
+        // Push the current state of tasks list onto history stack
     }
 
     @Override
-    public void editTask(String taskId, String newTitle, boolean isCompleted) {
-        // Find the task by ID and update its properties
-        // Then save the current state
-        saveState();
-        for (Task task : tasks) {
-            if (task.getId().equals(taskId)) {
-                task.setTitle(newTitle);
-                task.setCompleted(isCompleted);
-                break;
-            }
-        }
+    public void editTask(String taskId, String newTitle) {
+        // Find task by taskId and update its title
+        // Push the current state of tasks list onto history stack
     }
 
     @Override
-    public void undo() {
-        // Check if there are any changes to undo
-        if (!history.isEmpty()) {
-            // Restore the previous state by popping the last saved state from the history stack
-            tasks = history.pop();
-        }
+    public void undoLastAction() {
+        
+        // Pop the last state of tasks list from history stack and restore it
     }
 
     @Override
     public List<Task> listTasks() {
-        // Return the current list of tasks
+        // Return the current state of tasks list
         return tasks;
-    }
-
-    // Method to save the current state of tasks
-    private void saveState() {
-        // Create a deep copy of the tasks and push it onto the history stack
-        List<Task> currentState = new ArrayList<>(tasks.size());
-        for (Task task : tasks) {
-            currentState.add(new Task(task));
-        }
-        history.push(currentState);
     }
 }
