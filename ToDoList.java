@@ -22,13 +22,13 @@ public class ToDoList implements IToDoList {
 
     @Override
     public void completeTask(String taskId) {
-        // Find task by taskId and mark it as completed
-        // Push the current state of tasks list onto history stack
+        taskId.isCompleted(true);
     }
 
     @Override
     public void deleteTask(String taskId) {
-
+        // Remove task from tasks list
+        // Push the current state of tasks list onto history stack
     }
 
     @Override
