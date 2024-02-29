@@ -4,6 +4,12 @@ import java.util.Objects;
 
 public class Task {
 
+    private String id;
+    private String title;
+    private boolean isCompleted;
+
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -14,8 +20,15 @@ public class Task {
                isCompleted == task.isCompleted; 
     }
 
+
+
     @Override
     public int hashCode() {
         return Objects.hash(id, title, isCompleted);
+    }
+
+    public copy(Task task){
+        Task newTask = (Task) task.clone();
+        return newTask;
     }
 }
