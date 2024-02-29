@@ -1,3 +1,5 @@
+package edu.ucalgary.oop;
+
 interface IToDoList {
     void addTask(Task task);
 
